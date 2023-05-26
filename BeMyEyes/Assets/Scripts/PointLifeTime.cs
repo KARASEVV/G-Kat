@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PointLifeTime : MonoBehaviour
 {
+    public float time;
     void Start()
     {
         StartCoroutine(Life());
     }
     IEnumerator Life(){
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(time);
         Destroy(gameObject);
     }
 }

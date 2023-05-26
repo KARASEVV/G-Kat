@@ -35,7 +35,7 @@ public class RayPoint : MonoBehaviour
             Instantiate(Pointer, Pointer.position, Pointer.rotation);
             hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
         }
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.05f);
         StartCoroutine(Lidar());
     }
 }
