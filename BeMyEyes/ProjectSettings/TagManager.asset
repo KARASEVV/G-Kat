@@ -5,15 +5,16 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enviroment
+  - Point
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Dark
   - Water
   - UI
-  - Dark
   - 
+  - Test
   - 
   - 
   - 

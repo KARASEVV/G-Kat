@@ -7,10 +7,12 @@ public class RayPoint : MonoBehaviour
     public Transform Pointer;
     Transform clone;
     Ray ray;
+    int cubeLayerIndex;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(Lidar());
+        cubeLayerIndex = LayerMask.NameToLayer("Test");
     }
 
     // Update is called once per frame
@@ -32,37 +34,33 @@ public class RayPoint : MonoBehaviour
 
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit)){
-            print(hit.collider.gameObject.name);
-            Pointer.position = hit.point;
-            /*if(hit.collider.gameObject.name=="Plane"){
-                Transform clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
-                clone.GetComponent<Renderer>().material.color = Color.blue;
-            }*/
-            switch (hit.collider.gameObject.name)
-            {
-            case "Plane":
+            if(Input.GetMouseButton(0)){
+                Pointer.position = hit.point;
+                switch (hit.collider.gameObject.name)
+                {
+                case "Plane":
                 clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
                 clone.GetComponent<Renderer>().material.color = Color.blue;
                 break;
-            case "Ceiling":
+                case "Ceiling":
                 clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
                 clone.GetComponent<Renderer>().material.color = Color.gray;
                 break;
-            case "Door":
+                case "Door":
                 clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
                 clone.GetComponent<Renderer>().material.color = Color.blue;
                 break;
-            case "Enviroment":
+                case "Enviroment":
                 clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
                 clone.GetComponent<Renderer>().material.color = Color.magenta;
                 break;
-            default:
+                default:
                 clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
                 clone.GetComponent<Renderer>().material.color = Color.white;
                 break;
+                }
             }
-            /*Instantiate(Pointer, Pointer.position, Pointer.rotation);
-            hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.yellow;*/
+            
         }
         yield return new WaitForSeconds(.05f);
         StartCoroutine(Lidar());
