@@ -44,6 +44,18 @@ public class RayPoint : MonoBehaviour
                 clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
                 clone.GetComponent<Renderer>().material.color = Color.blue;
                 break;
+            case "Ceiling":
+                clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
+                clone.GetComponent<Renderer>().material.color = Color.gray;
+                break;
+            case "Door":
+                clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
+                clone.GetComponent<Renderer>().material.color = Color.blue;
+                break;
+            case "Enviroment":
+                clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
+                clone.GetComponent<Renderer>().material.color = Color.magenta;
+                break;
             default:
                 clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
                 clone.GetComponent<Renderer>().material.color = Color.white;
