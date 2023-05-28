@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class takeItem : MonoBehaviour
+public class Door : MonoBehaviour
 {
     bool IsOnPlace;
-    public GameObject icon, item;
-    public ScriptManager SM;
-    public GameObject Lidarchik;
+    public GameObject icon;
+    // Start is called before the first frame update
     void Start()
     {
         
@@ -29,9 +29,8 @@ public class takeItem : MonoBehaviour
     void Update(){
         if (Input.GetKeyDown(KeyCode.E)){
             if(IsOnPlace){
-                item.SetActive(false);
-                SM.OnResume();
-                Lidarchik.SetActive(true);
+                int lvl_id = PlayerPrefs.GetInt("NextLevel");
+                SceneManager.LoadScene(lvl_id);
             }
         }
     }

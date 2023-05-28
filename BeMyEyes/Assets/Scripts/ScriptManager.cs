@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ScriptManager : MonoBehaviour
 {
+    public Text quote_label;
     public string start_path = "Assets/Dialogs/dialog.txt";
     string[] speach;
     public GameObject[] QuestItem;
@@ -23,11 +24,27 @@ public class ScriptManager : MonoBehaviour
     }
     private void printSpeach(string[] _text, int ind) {
         string[] quote = _text[ind].Split("|");
-        print(quote[0]);   
-        if(quote[1]!="null"){
+        //quote_label.text = quote[0];
+
+        StartCoroutine(FontChange(quote[0]));
+
+        //print(quote[0]);
+        if(quote[1]!="-"){
             QuestItem[int.Parse(quote[1])].SetActive(true);
             resume = false;
         }
+        if(quote[2]!="-"){
+            PlayerPrefs.SetInt("NextLevel", int.Parse(quote[2]));
+            PlayerPrefs.Save();
+        }
+    }
+    IEnumerator FontChange(string _quote){
+        for (int i=1; i<=_quote.Length; i++) {
+            quote_label.text = _quote.Substring(0, i);
+            yield return new WaitForSeconds(.1f);
+        }
+        
+        //StartCoroutine(FontChange());
     }
     void Update(){
         if (Input.GetKeyDown(KeyCode.Q))
@@ -42,5 +59,8 @@ public class ScriptManager : MonoBehaviour
     }
     public void OnResume(){
         resume=true;
+        dialog_index++;
+            if(dialog_index<speach.Length)
+                printSpeach(speach,dialog_index);
     }
 }

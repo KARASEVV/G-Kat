@@ -8,6 +8,7 @@ public class RayPoint : MonoBehaviour
     Transform clone;
     Ray ray;
     int cubeLayerIndex;
+    public Material mat;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,27 +37,30 @@ public class RayPoint : MonoBehaviour
         if(Physics.Raycast(ray, out hit)){
             if(Input.GetMouseButton(0)){
                 Pointer.position = hit.point;
-                switch (hit.collider.gameObject.name)
+                switch (hit.collider.gameObject.tag)
                 {
-                case "Plane":
-                clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
-                clone.GetComponent<Renderer>().material.color = Color.blue;
-                break;
                 case "Ceiling":
-                clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
-                clone.GetComponent<Renderer>().material.color = Color.gray;
+                    clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
+                    clone.GetComponent<Renderer>().material.color = Color.gray;
                 break;
                 case "Door":
-                clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
-                clone.GetComponent<Renderer>().material.color = Color.blue;
+                    clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
+                    clone.GetComponent<Renderer>().material.color = Color.blue;
                 break;
                 case "Enviroment":
-                clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
-                clone.GetComponent<Renderer>().material.color = Color.magenta;
+                    clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
+                    clone.GetComponent<Renderer>().material.color = Color.magenta;
+                break;
+                case "Find":
+                    clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
+                    clone.GetComponent<Renderer>().material.color = Color.red;
+                    hit.collider.gameObject.GetComponent<Renderer>().material = mat;
+                    hit.collider.gameObject.GetComponent<ButtonOn>().TrigOn();
+                    hit.collider.gameObject.layer = LayerMask.NameToLayer("Default");
                 break;
                 default:
-                clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
-                clone.GetComponent<Renderer>().material.color = Color.white;
+                    clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
+                    clone.GetComponent<Renderer>().material.color = Color.white;
                 break;
                 }
             }

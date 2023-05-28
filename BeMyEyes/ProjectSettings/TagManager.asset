@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enviroment
   - Point
+  - Door
+  - Ceiling
+  - Find
   layers:
   - Default
   - TransparentFX
