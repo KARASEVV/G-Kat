@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: d154cc26b4fec8946a9b6f319efdd1a6
+  - enabled: 1
+    path: Assets/Scenes/FlatHub_1.unity
+    guid: 8fc904ab229644f2699ace7e462fbba0
   m_configObjects: {}

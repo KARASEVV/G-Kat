@@ -31,9 +31,6 @@ public class ScriptManager : MonoBehaviour
             QuestItem[int.Parse(quote[1])].SetActive(true);
             resume = false;
         }
-        else if(quote[1]=="--"){
-            resume = false;
-        }
         if(quote[2]!="-"){
             PlayerPrefs.SetInt("NextLevel", int.Parse(quote[2]));
             PlayerPrefs.Save();
