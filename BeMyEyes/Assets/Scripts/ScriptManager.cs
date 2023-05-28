@@ -10,8 +10,9 @@ public class ScriptManager : MonoBehaviour
     public string start_path = "Assets/Dialogs/dialog.txt";
     string[] speach;
     public GameObject[] QuestItem;
-    int dialog_index = 0;
+    public int dialog_index = 0;
     public bool resume = true;
+    int index_1 = 0;
     void Start() {
         speach = getText(start_path);
         printSpeach(speach,0);
@@ -24,13 +25,13 @@ public class ScriptManager : MonoBehaviour
     }
     private void printSpeach(string[] _text, int ind) {
         string[] quote = _text[ind].Split("|");
-        //quote_label.text = quote[0];
-
         StartCoroutine(FontChange(quote[0]));
-
         //print(quote[0]);
         if(quote[1]!="-"){
             QuestItem[int.Parse(quote[1])].SetActive(true);
+            resume = false;
+        }
+        else if(quote[1]=="--"){
             resume = false;
         }
         if(quote[2]!="-"){
@@ -43,8 +44,6 @@ public class ScriptManager : MonoBehaviour
             quote_label.text = _quote.Substring(0, i);
             yield return new WaitForSeconds(.1f);
         }
-        
-        //StartCoroutine(FontChange());
     }
     void Update(){
         if (Input.GetKeyDown(KeyCode.Q))
@@ -62,5 +61,12 @@ public class ScriptManager : MonoBehaviour
         dialog_index++;
             if(dialog_index<speach.Length)
                 printSpeach(speach,dialog_index);
+    }
+    public void OnResume_1(){
+        index_1++;
+        if(index_1==5){
+            OnResume();
+        }
+        
     }
 }

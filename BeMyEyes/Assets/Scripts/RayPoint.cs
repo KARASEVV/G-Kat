@@ -58,6 +58,15 @@ public class RayPoint : MonoBehaviour
                     hit.collider.gameObject.GetComponent<ButtonOn>().TrigOn();
                     hit.collider.gameObject.layer = LayerMask.NameToLayer("Default");
                 break;
+                case "Find_1":
+                    clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
+                    hit.collider.gameObject.GetComponent<Renderer>().material = mat;
+                    hit.collider.gameObject.GetComponent<FindingObject>().Finded();
+                    hit.collider.gameObject.layer = LayerMask.NameToLayer("Default");
+                break;
+                case "Barier":
+                    
+                break;
                 default:
                     clone = Instantiate(Pointer, Pointer.position, Pointer.rotation);
                     clone.GetComponent<Renderer>().material.color = Color.white;

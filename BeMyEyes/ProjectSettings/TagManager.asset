@@ -9,6 +9,8 @@ TagManager:
   - Door
   - Ceiling
   - Find
+  - Barier
+  - Find_1
   layers:
   - Default
   - TransparentFX
